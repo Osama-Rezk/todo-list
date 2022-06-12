@@ -27,7 +27,7 @@ function renderTodoItem(todo) {
 }
 
 function renderFilters(showTodos) {
-  return ` <div>
+  return `<div>
   <div>
   <input type="radio" name="filter" value=${todosFiltersEnum.ALL} id="all"
    ${showTodos === todosFiltersEnum.ALL ? "checked" : ""}

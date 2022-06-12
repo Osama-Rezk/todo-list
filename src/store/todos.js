@@ -1,5 +1,6 @@
 import { todosFiltersEnum } from "../constants";
 import { ACTIONS } from "./todoActions";
+import { createSlice } from "@reduxjs/toolkit";
 
 const uniqueId = {
   currentId: 0,
@@ -43,28 +44,32 @@ export const initialState = {
   showTodos: todosFiltersEnum.ALL,
 };
 
-export default (state = initialState, action) => {
-  switch (action.type) {
-    case ACTIONS.ADD:
-      state.todos.push({
-        id: uniqueId.get(),
-        title: action.title,
-        completed: false,
-      });
-      break;
+const todoReducer = {
+  [ACTIONS.ADD]: (state, action) => {
+    state.todos.push({
+      id: uniqueId.get(),
+      title: action.title,
+      completed: false,
+    });
+  },
 
-    case ACTIONS.TOGGLE:
-      for (let todo of state.todos) {
-        if (todo.id === action.id) {
-          todo.completed = !todo.completed;
-          break;
-        }
+  [ACTIONS.TOGGLE]: (state, action) => {
+    for (let todo of state.todos) {
+      if (todo.id === action.id) {
+        todo.completed = !todo.completed;
+        break;
       }
+    }
+  },
 
-    case ACTIONS.FILTER:
-      state.todos = initialTodos.filter((todo) => filterTodos(action, todo));
-      state.showTodos = action.value;
-
-      break;
-  }
+  [ACTIONS.FILTER]: (state, action) => {
+    state.todos = initialTodos.filter((todo) => filterTodos(action, todo));
+    state.showTodos = action.value;
+  },
 };
+
+export const todosSlice = createSlice({
+  name: "todos",
+  initialState: initialState,
+  reducers: todoReducer,
+});

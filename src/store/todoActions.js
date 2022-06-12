@@ -5,16 +5,16 @@ export const ACTIONS = {
 };
 
 export const toggle = (id) => ({
-  type: ACTIONS.TOGGLE,
+  type: `todos/${ACTIONS.TOGGLE}`,
   id,
 });
 
 export const add = (title) => ({
-  type: ACTIONS.ADD,
+  type: `todos/${ACTIONS.ADD}`,
   title,
 });
 
 export const filter = (value) => ({
-  type: ACTIONS.FILTER,
+  type: `todos/${ACTIONS.FILTER}`,
   value,
 });
