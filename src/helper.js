@@ -10,3 +10,9 @@ export const toggleTodo = (e) => {
   const id = Number(e.target.dataset.id);
   store.dispatch(todoActions.toggle(id));
 };
+
+export const filterTodos = (e) => {
+  if (!e.target.value) return;
+
+  store.dispatch(todoActions.filter(e.target.value));
+};

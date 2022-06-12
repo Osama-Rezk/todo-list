@@ -1,5 +1,5 @@
 import { DOM_EVENTS, KEY_CODES } from "./constants";
-import { addNewTodo, toggleTodo } from "./helper";
+import { addNewTodo, toggleTodo, filterTodos } from "./helper";
 
 function addListener(eventName, selector, callback) {
   document.body.addEventListener(eventName, (e) => {
@@ -18,3 +18,5 @@ addListener(DOM_EVENTS.KEYDOWN, '[data-element="addTodoInput"]', (e) => {
 });
 
 addListener(DOM_EVENTS.CLICK, '[data-element="toggleTodo"]', toggleTodo);
+
+addListener(DOM_EVENTS.CHANGE, 'input[name="filter"]', filterTodos);
