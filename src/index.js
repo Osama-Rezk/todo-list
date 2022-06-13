@@ -1,10 +1,18 @@
 import "./main.css";
+import React from "react";
+import { createRoot } from "react-dom/client";
+import { Provider } from "react-redux";
 
 import store from "./store";
-import render from "./render";
-import "./registerEventListeners";
+import { App } from "./app";
 
-const rootElement = document.getElementById("demo");
+const container = document.getElementById("demo");
+const root = createRoot(container);
 
-store.subscribe(() => render(rootElement, store.getState()));
-render(rootElement, store.getState());
+root.render(
+  <React.StrictMode>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </React.StrictMode>
+);
